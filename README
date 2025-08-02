@@ -1,39 +1,39 @@
-#Criptopals Set 1 ? Challenge 1: Convert hex to base64
+#Criptopals Set 1 - Challenge 1: Convert hex to base64
 ## Descrizione
-L?esercizio Š, all?apparenza, abbastanza semplice. Si tratta di convertire la stringa binaria:
+L'esercizio e', all'apparenza, abbastanza semplice. Si tratta di convertire la stringa binaria:
 > 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
 in una sequenza di caratteri ASCII secondo la codifica base64.
 ## Dettagli
 ### La codifica base64
-Base64 Š una famiglia di codifiche ?da binario a testo? che hanno l?obiettivo di trasformare una generica 
-stringa di byte in una sequenza di caratteri stampabili, ricavati da un alfabeto di 64 caratteri. L?alfabeto Š 
-costituito dalle maiuscole (A?Z), le minuscole (a?z), i numeri (0?9) e due caratteri che possono variare a 
-seconda dell?implementazione (i pi— comuni sono ?+/? o ?-_?). Un ultimo carattere (=) Š utilizzato come 
+Base64 e' una famiglia di codifiche "da binario a testo" che hanno l'obiettivo di trasformare una generica 
+stringa di byte in una sequenza di caratteri stampabili, ricavati da un alfabeto di 64 caratteri. L'alfabeto e' 
+costituito dalle maiuscole (A...Z), le minuscole (a...z), i numeri (0...9) e due caratteri che possono variare a 
+seconda dell'implementazione (i piu' comuni sono "+/" o "-_"). Un ultimo carattere (=) e' utilizzato come 
 riempitivo (vedi oltre).
-Per la codifica, la stringa binaria Š suddivisa in blocchi di 6 bit (000000 = 0 ? 111111 = 63) e ciascun blocco Š 
-associato a una ?lettera? dell?alfabeto di codifica. Questo comporta che a ogni tre caratteri binari 
-corrispondono 4 caratteri base64. Se il numero di caratteri binari non Š divisibile per 3, nella stringa 
+Per la codifica, la stringa binaria e' suddivisa in blocchi di 6 bit (000000 = 0 ... 111111 = 63) e ciascun blocco Š 
+associato a una "lettera" dell'alfabeto di codifica. Questo comporta che a ogni tre caratteri binari 
+corrispondono 4 caratteri base64. Se il numero di caratteri binari non e' divisibile per 3, nella stringa 
 codificata sono inseriti uno o due caratteri di riempimento (i caratteri di riempimento possono essere 
 obbligatori per taluni protocolli o essere rimossi in altri).
-La codifica Š stata introdotta, in origine, per consentire l?invio di allegati con i messaggi di posta elettronica 
+La codifica e' stata introdotta, in origine, per consentire l'invio di allegati con i messaggi di posta elettronica 
 nel protocollo SMTP, che utilizzava una codifica ASCII a 7 bit e, quindi, poteva creare problemi con dati 
-puramente binari (es. le immagini). Il suo utilizzo si Š esteso a tutte quelle applicazioni che non consentono 
-l?utilizzo di caratteri non stampabili (es. i parametri HTTP negli HTTP _forms_ o per HTTP GET URL). 
+puramente binari (es. le immagini). Il suo utilizzo si e' esteso a tutte quelle applicazioni che non consentono 
+l'utilizzo di caratteri non stampabili (es. i parametri HTTP negli HTTP _forms_ o per HTTP GET URL). 
 La codifica base64 provoca un incremento della lunghezza del testo binario del 33% (37% per quelle 
-applicazioni che richiedono l?inserimento delle interruzioni d linea). Tale _overhead_ Š senz?altro migliore di 
-altre soluzioni, tipo quella riportata nella descrizione del _Challenge_, in cui ciascun carattere binario Š 
+applicazioni che richiedono l'inserimento delle interruzioni d linea). Tale _overhead_ e' senz'altro migliore di 
+altre soluzioni, tipo quella riportata nella descrizione del _Challenge_, in cui ciascun carattere binario e' 
 rappresentato da una coppia di caratteri stampabili, in cui il primo carattere rappresenta i primi quattro bit 
 e il secondo gli ultimi quattro (incremento della lunghezza del 50%).
-Lo standard attualmente Š riportato nella RFC 4648 (2006) e una sua ottima descrizione la potete trovare 
-alla voce _Base64_ dell?edizione inglese di WIKIPEDIA.
+Lo standard attualmente e' riportato nella RFC 4648 (2006) e una sua ottima descrizione la potete trovare 
+alla voce _Base64_ dell'edizione inglese di WIKIPEDIA.
 ## La soluzione NO SPOILER
-L?esercizio riporta il risultato finale della codifica base64 della stringa esadecimale:
+L'esercizio riporta il risultato finale della codifica base64 della stringa esadecimale:
 > SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t
 Esistono numerose librerie, in vari linguaggi di programmazione, per effettuare tale operazione, tuttavia 
-pu• essere utile provare a progettare un convertitore, per comprendere il meccanismo di funzionamento 
+puo' essere utile provare a progettare un convertitore, per comprendere il meccanismo di funzionamento 
 della codifica. 
 Io ho scritto una classe C++ per realizzare il processo di codifica/decodifica sia da stringa di testo a array di 
-byte, sia da array di byte a stringa di caratteri base64. L?_header_ della classe Š il seguente:
+byte, sia da array di byte a stringa di caratteri base64. L'_header_ della classe e' il seguente:
 ```
 class DFormatConverter : public blas::error::DError
 {
