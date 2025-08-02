@@ -1,7 +1,9 @@
 # Criptopals Set 1 - Challenge 1: Convert hex to base64
 ## Descrizione
 L'esercizio e', all'apparenza, abbastanza semplice. Si tratta di convertire la stringa binaria:
-> 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
+```
+49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
+```
 in una sequenza di caratteri ASCII secondo la codifica base64.
 ## Dettagli
 ### La codifica base64
@@ -28,7 +30,9 @@ Lo standard attualmente e' riportato nella RFC 4648 (2006) e una sua ottima desc
 alla voce _Base64_ dell'edizione inglese di WIKIPEDIA.
 ## La soluzione NO SPOILER
 L'esercizio riporta il risultato finale della codifica base64 della stringa esadecimale:
-> SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t
+```
+SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t
+```
 Esistono numerose librerie, in vari linguaggi di programmazione, per effettuare tale operazione, tuttavia 
 puo' essere utile provare a progettare un convertitore, per comprendere il meccanismo di funzionamento 
 della codifica. 
